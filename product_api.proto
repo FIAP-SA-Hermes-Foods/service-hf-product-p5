@@ -1,0 +1,89 @@
+syntax = "proto3";
+option go_package = "hf-product-api-service/product_api-proto";
+
+message GetProductByIDRequest { string uuid = 1; }
+
+message GetProductByIDResponse {
+  string uuid = 1;
+  string name = 2;
+  string category = 3;
+  string image = 4;
+  string description = 5;
+  float price = 6;
+  string createdAt = 7;
+  string deactivatedAt = 8;
+}
+
+message CreateProductRequest {
+  string name = 1;
+  string category = 2;
+  string image = 3;
+  string description = 4;
+  float price = 5;
+  string createdAt = 6;
+  string deactivatedAt = 7;
+}
+
+message CreateProductResponse {
+  string uuid = 1;
+  string name = 2;
+  string category = 3;
+  string image = 4;
+  string description = 5;
+  float price = 6;
+  string createdAt = 7;
+  string deactivatedAt = 8;
+}
+
+message GetProductByCategoryRequest { string category = 1; }
+
+message GetProductByCategoryItem {
+  string uuid = 1;
+  string name = 2;
+  string category = 3;
+  string image = 4;
+  string description = 5;
+  float price = 6;
+  string createdAt = 7;
+  string deactivatedAt = 8;
+}
+
+message GetProductByCategoryResponse {
+  repeated GetProductByCategoryItem items = 1;
+}
+
+message UpdateProductRequest {
+  string uuid = 1;
+  string name = 2;
+  string category = 3;
+  string image = 4;
+  string description = 5;
+  float price = 6;
+  string createdAt = 7;
+  string deactivatedAt = 8;
+}
+
+message UpdateProductResponse {
+  string uuid = 1;
+  string name = 2;
+  string category = 3;
+  string image = 4;
+  string description = 5;
+  float price = 6;
+  string createdAt = 7;
+  string deactivatedAt = 8;
+}
+
+message DeleteProductByIDRequest { string uuid = 1; }
+
+message DeleteProductByIDResponse { string message = 1; }
+
+service Product {
+  rpc GetProductByID(GetProductByIDRequest) returns (GetProductByIDResponse);
+  rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse);
+  rpc GetProductByCategory(GetProductByCategoryRequest)
+      returns (GetProductByCategoryResponse);
+  rpc UpdateProduct(UpdateProductRequest) returns (UpdateProductResponse);
+  rpc DeleteProductByID(DeleteProductByIDRequest)
+      returns (DeleteProductByIDResponse);
+}
